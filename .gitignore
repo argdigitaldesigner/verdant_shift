@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+
+# Unreal generated files
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# IDE-generated files
+.idea/
+.vscode/
+*.code-workspace
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+*.xcworkspace/
+*.xcodeproj/
+
+# Build products and local caches
+Build/Receipts/
+Build/*/FileOpenOrder/
+*.log
+*.tmp
+*.user
+*.userprefs
+
