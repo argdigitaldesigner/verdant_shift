@@ -22,6 +22,7 @@ public class VerdantShift : ModuleRules
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { });
+		PrivateDependencyModuleNames.Add("CableComponent");
 
 		PublicIncludePaths.AddRange(new string[] {
 			"VerdantShift",

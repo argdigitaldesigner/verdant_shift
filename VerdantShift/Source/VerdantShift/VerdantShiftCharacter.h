@@ -52,7 +52,7 @@ protected:
 public:
 
 	/** Constructor */
-	AVerdantShiftCharacter();	
+	AVerdantShiftCharacter(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 	/** Respawns this player at the level's PlayerStart. Safe to call from a fall-zone overlap. */
 	UFUNCTION(BlueprintCallable, Category="Respawn")
