@@ -13,6 +13,12 @@ AVerdantGrapplingCharacter::AVerdantGrapplingCharacter(const FObjectInitializer&
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	// The grapple can generate speeds far above MaxWalkSpeed. Keep falling
+	// movement free of automatic braking so PhysFalling preserves that speed
+	// after release instead of immediately damping it back toward walk speed.
+	GetCharacterMovement()->FallingLateralFriction = 0.0f;
+	GetCharacterMovement()->BrakingDecelerationFalling = 0.0f;
+
 	GrappleCable = CreateDefaultSubobject<UCableComponent>(TEXT("GrappleCable"));
 	GrappleCable->SetupAttachment(GetCapsuleComponent());
 	GrappleCable->SetRelativeLocation(FVector(0.0f, 0.0f, 40.0f));
