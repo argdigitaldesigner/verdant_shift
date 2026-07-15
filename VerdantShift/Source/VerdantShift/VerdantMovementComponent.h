@@ -40,6 +40,11 @@ public:
 
 protected:
 	virtual void PhysCustom(float DeltaTime, int32 Iterations) override;
+	virtual void OnMovementModeChanged(EMovementMode PreviousMovementMode, uint8 PreviousCustomMode) override;
+	virtual FVector GetAirControl(float DeltaTime, float TickAirControl, const FVector& FallAcceleration) override;
+
+	void BeginPostGrappleMomentumPreservation();
+	void RestoreFallingMovementSettings();
 
 	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = "Verdant|Grapple")
 	FVector GrappleAnchor = FVector::ZeroVector;
@@ -52,4 +57,13 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Verdant|Grapple", meta = (ClampMin = "0.0", ClampMax = "1.0"))
 	float LandingNormalThreshold = 0.7f;
+
+	/** Prevent high-speed steering input from masking release momentum during the post-grapple fall. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Verdant|Grapple|Release")
+	bool bSuppressAirControlAboveMaxSpeedAfterRelease = true;
+
+private:
+	bool bPreservingPostGrappleMomentum = false;
+	float SavedFallingLateralFriction = 0.0f;
+	float SavedBrakingDecelerationFalling = 0.0f;
 };
